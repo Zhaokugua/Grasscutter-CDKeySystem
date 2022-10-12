@@ -1,0 +1,92 @@
+<!doctype html>
+    <html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<link href="./usr/theme/images/favicon.ico" rel="icon"> 
+	<link href="./usr/theme/css/style.css" rel="stylesheet" type="text/css" media="all"> 
+	<link rel="stylesheet" href="./usr/theme/css/bootstrap.min.css"> 
+	<link rel="stylesheet" href="./usr/theme/css/font-awesome.min.css"> 
+	<link rel="stylesheet" href="./usr/theme/css/i.css"> 
+	<script src="./usr/theme/js/jquery.min.js"></script> 
+	<script src="./usr/theme/js/jquery.sliderBar.js"></script> 
+	<script src="./usr/theme/js/layer.js"></script> 
+	<script src="./usr/theme/js/pay.js"></script> 
+	<script src="./usr/theme/js/clipboard.js"></script> 
+<title>原神玩家后台~</title>
+</head>
+<body style="background: url(./usr/theme/images/bg.jpg') fixed no-repeat;background-size: cover;">
+<div id="app">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgba(255,255,255,0.65) !important;">
+    <div class="container">
+        <div class="navbar-brand">
+        <a href="/">
+        <img src=./usr/theme/images/favicon.ico height="30px" style="border-radius: 50%;box-shadow: #f0d1d4 1px 1px 1px;">
+        <span style="position: relative;top: 4px;left: 3px;font-weight: bold;color:#FFB6C1;">玩家后台~</span></a>
+        </div>
+        <div class="row">
+        <a class="nav-link" href="./user" style="font-weight: bolder;">用户后台</a>
+        <a class="nav-link" style="font-weight: bold;color:#1E90FF;">在线人数:366</a>        </div>
+</nav>
+</div>	<div class="container1" style="inline-block">
+	<div class="card" style="background-color:rgba(255,255,255,0.85);" style="width:100px; height:100px;">
+	<form action="" method="post" class="login" >
+	</form></div></div>
+ </body>
+</html>
+<script>
+    function copyAble(element) {
+      var id = 'copy-able-el'
+      var scrollTop = document.documentElement.scrollTop;
+      var copyElement = document.getElementById(id);
+      copyElement|| (copyElement= document.createElement("textarea"),
+      copyElement.style.position = "absolute",
+      copyElement.style.left = "-9999px",
+      copyElement.style.top = scrollTop + "px",
+      copyElement.id = id,
+      document.body.appendChild(copyElement)),
+      copyElement.textContent = element.innerText;
+      
+      element = id;
+      
+      if (element = "string" == typeof element ? document.querySelector(element) : element,
+        navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+          var elementEditable = element.contentEditable
+            , elementOnly = element.readOnly;
+          element.contentEditable = !0,
+          element.readOnly = !0;
+          var documentRange = document.createRange();
+          documentRange.selectNodeContents(element);
+          var selection = window.getSelection();
+          selection.removeAllRanges(),
+          selection.addRange(documentRange),
+          element.setSelectionRange(0, 999999),
+          element.contentEditable = elementEditable,
+          element.readOnly = elementOnly
+      } else {
+        copyElement.select()
+      }
+      document.execCommand("copy")
+    }
+</script>
+<script>
+//计算根节点HTML的字体大小
+        function resizeRoot() {
+            var deviceWidth = document.documentElement.clientWidth,
+
+                num = 1280,
+                num1 = num / 20;
+            if (deviceWidth > num) {
+                deviceWidth = num;
+            }
+            console.log(deviceWidth,num1)
+            document.documentElement.style.fontSize = deviceWidth / num1 + "px";
+        }
+        //根节点HTML的字体大小初始化
+        resizeRoot();
+
+        window.onresize = function () {
+            resizeRoot();
+        };
+
+</script>

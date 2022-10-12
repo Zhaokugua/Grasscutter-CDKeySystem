@@ -1,0 +1,30 @@
+from django.db import models
+
+# Create your models here.
+
+
+class CDKey(models.Model):
+    # cdkey的值，一般为12位字母和数字
+    key = models.CharField(max_length=16)
+    # cdk内容（回车分隔的命令，不带/）
+    cdk_value = models.TextField(null=True)
+    # 邮件模板（可以设置已经创建好的邮件模板，设置之后将忽略cdk_value）
+    mail_template_id = models.IntegerField(default=0)
+    # 过期时间
+    end_time = models.DateField(default='2022-10-1')
+    # 总数（有的cdkey可以重复兑换，默认为1）
+    total_num = models.IntegerField(default=1)
+    # 已经兑换的数量
+    used_num = models.IntegerField(default=0)
+    # 暂不考虑同一类型不可重复兑换的兑换码
+
+
+class CDkey_Record(models.Model):
+    # cdkey
+    key = models.CharField(max_length=16)
+    # 兑换时间
+    use_time = models.DateTimeField(auto_now=True)
+    # 兑换用户uid
+    user_uid = models.CharField(max_length=16)
+
+
