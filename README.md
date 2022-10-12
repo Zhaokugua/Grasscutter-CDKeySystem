@@ -32,7 +32,7 @@ Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/
 ```shell
 pip install django==3.2 requests
 ```
-7.下载本仓库到服务器，打开并编辑`app`文件夹里的`CONSTANTS.py`文件。
+7. 下载本仓库到服务器，打开并编辑`app`文件夹里的`CONSTANTS.py`文件。
 8. 设置服务器地址、opencommand的Token和自定义密码，保存
 ```python
 # 设置服务器open-command的token
