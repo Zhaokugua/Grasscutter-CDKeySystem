@@ -46,7 +46,7 @@ pip install django==3.2 requests
 # 设置服务器open-command的token
 Server_token = 'token_value'
 
-# 设置服务器地址，不带http和/
+# 设置服务器地址，不带后边的/
 Server_addr = 'https://127.0.0.1'
 
 # 设置MeaMail插件的邮件模板文件夹（暂不需要）
