@@ -20,7 +20,7 @@ MeaMail_addr = r'plugins\MeaMailPlus\template'
 # 设置使用Crepe-Inc-YSGM
 YSGM = {
     # 启用状态。若未启用则使用open-command
-    'enable': True,
+    'enable': False,
     # MUIP_HOST的api地址，带有/api
     'MUIP_HOST': 'http://127.0.0.1:54321/api',
     'MUIP_TARGET_REGION': 'dev_test'

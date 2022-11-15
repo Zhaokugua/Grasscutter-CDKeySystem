@@ -32,7 +32,12 @@
 </div>	<div class="container1" style="inline-block">
 	<div class="card" style="background-color:rgba(255,255,255,0.85);" style="width:100px; height:100px;">
 	<form action="" method="post" class="login" >
-<p class="card-title">CDK生成</p><br><br></span>
+<p class="card-title">CDK生成</p><br>
+        <a style="
+    font-size: 13px;
+">注：YSGM的命令不需要带前面的gm &lt;uid&gt;</a>
+<br><br>
+        </span>
                 <a>请输入单个CDK可以使用的次数</a>
                 <input class="card-title category-1 button-click category-button checked" type="text" id="total_num" name="total_num"  value="1" placeholder="请输入单个CDK可以使用的次数" maxlength="20" ><br><br>
                 <a>请输入执行的命令(回车分隔)</a>
@@ -41,6 +46,8 @@
                 <input class="card-title category-1 button-click category-button checked" type="text" id="end_time" name="end_time"  value="2023-10-1" placeholder="请输入过期时间"  ><br><br>
             <a>生成的个数</a>
                 <input class="card-title category-1 button-click category-button checked" type="text" id="cdk_num" name="cdk_num"  value="1" placeholder="请输入生成cdk的个数"  ><br><br>
+         <a>每个uid可以使用该CDK的次数</a>
+                <input class="card-title category-1 button-click category-button checked" type="text" id="num_by_uid" name="num_by_uid"  value="1" placeholder="每个uid可以使用该CDK的次数"  ><br><br>
                 <input class="card-title btn btn-success button-click category-button checked" type="submit" value="生成CDK" name="usecdk" id="usecdk"><br><br> <font size='4' color= '#00BFFF'>{{ message }}	</form></div></div>
  </body>
 </html>

@@ -16,7 +16,8 @@ class CDKey(models.Model):
     total_num = models.IntegerField(default=1)
     # 已经兑换的数量
     used_num = models.IntegerField(default=0)
-    # 暂不考虑同一类型不可重复兑换的兑换码
+    # 设置每个uid可兑换次数
+    num_by_uid = models.IntegerField(default=1)
 
 
 class CDkey_Record(models.Model):

@@ -12,12 +12,12 @@ Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/
 
 ## 💡Feature
 
-- [x] **通过opencommand连接Grasscutter**
-- [x] **通过YSGM连接官方服务端**
+- [x] **通过opencommand连接Grasscutter.**
+- [x] **通过YSGM连接官方服务端.**
 - [x] **CDKey兑换**  - 玩家可以兑换已经生成的CDKey.
 - [x] **CDKey生成**  - 管理者可以生成CDKey的内容，支持批量生成。
-- [X] **开启地图和深渊**  - 玩家可以一键开启地图和深渊.
-- [X] **设置世界等级**  - 玩家可以任意设置世界等级.
+- [X] **开启地图和深渊**  - 玩家可以一键开启地图和深渊(仅限Grasscutter).
+- [X] **设置世界等级**  - 玩家可以任意设置世界等级(仅限Grasscutter).
 - [ ] **幸运抽奖**  - 抽奖系统.
 - [ ] **每日签到**  - 签到系统.
 - [ ] **更多**  - Comming soon...

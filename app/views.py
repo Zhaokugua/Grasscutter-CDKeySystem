@@ -56,6 +56,16 @@ def cdkey(request):
             }
             return render(request, 'cdkey兑换.html', context=context)
 
+        # 判断每个用户的使用次数
+        used_times = len(CDkey_Record.objects.filter(user_uid=user_uid).filter(key=cdkey_value))
+
+        if used_times > cdk_obj.num_by_uid:
+            context = {
+                'message': "同一个兑换码单个uid使用次数达到上限!	",
+                'online_num': online_num,
+            }
+            return render(request, 'cdkey兑换.html', context=context)
+
         result_list = []
         success = True
         for command in cdk_obj.cdk_value.split('\r\n'):
@@ -153,6 +163,30 @@ def lucky(request):
     global online_num
     online_num = get_online()[0]
     if request.method == 'POST':
+        # 从前端获取用户uid
+        uuid = request.POST.get('uuid')
+        # 可以用exec_command随机执行一个命令来获取抽奖奖励，用户离线时可以用邮件命令发送奖励
+        # 然后context的message显示随机到的抽奖结果返回到页面上显示
+        # 例：
+        # # 记录随机命令列表
+        # command_list = [
+        #     '/give 202 x1000',
+        #     '/give 201 x100',
+        #     '/give 223 x10'
+        # ]
+        # # 记录命令对应的结果
+        # result_list = [
+        #     '100摩拉',
+        #     '100原石',
+        #     '10纠缠之缘'
+        # ]
+        # # 随机选取
+        # random_result = ramdom.randint(0, len(command_list))
+        # exec_command(command_list[random_result], uuid)   # give命令需要玩家在线
+        # context = {
+        #     'message': f"抽奖成功！获得{result_list[random_result]}！",
+        #     'online_num': online_num,
+        # }
         context = {
             'message': "功能暂未开放!	",
             'online_num': online_num,
@@ -168,6 +202,16 @@ def sign(request):
     global online_num
     online_num = get_online()[0]
     if request.method == 'POST':
+        # 从前端获取用户uid
+        uuid = request.POST.get('uuid')
+        # 可以用exec_command执行一个命令来获取签到奖励，用户离线时可以用邮件命令发送奖励
+        # 然后context的message显示签到结果返回到页面上显示
+        # 例：
+        # exec_command('/give 202 x1000', uuid)   # give命令需要玩家在线
+        # context = {
+        #     'message': "签到成功！获得1000摩拉！",
+        #     'online_num': online_num,
+        # }
         context = {
             'message': "功能暂未开放!	",
             'online_num': online_num,
