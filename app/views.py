@@ -11,7 +11,7 @@ cdk_list = [x.key for x in CDKey.objects.all()]  # 获取所有key
 online_num = get_online()[0]
 
 if not initialize():
-    print('opencommand 连接失败！可能无法正常进行操作！')
+    print('服务器连接失败！可能无法正常进行操作！')
 
 
 def index(request):
@@ -59,7 +59,7 @@ def cdkey(request):
         result_list = []
         success = True
         for command in cdk_obj.cdk_value.split('\r\n'):
-            flag, res = exec_command(command + f' @{user_uid}')
+            flag, res = exec_command(command, uid=user_uid)
             if res['data'] == '玩家不存在。':
                 context = {
                     'message': "玩家不存在，请检查uid!	",
@@ -185,8 +185,8 @@ def unlock_map(request):
     if request.method == 'POST':
         uuid = request.POST.get('uuid')
         if uuid:
-            exec_command(f'prop um 1 @{uuid}')
-            flag, res = exec_command(f'prop ut 12 @{uuid}')
+            exec_command(f'prop um 1', uuid)
+            flag, res = exec_command(f'prop ut 12', uuid)
             if res['data'] == '玩家不存在。':
                 context = {
                     'message': "玩家不存在，请检查uid!	",
@@ -223,7 +223,7 @@ def set_world_level(request):
         uuid = request.POST.get('uuid')
         level = request.POST.get('level')
         if uuid:
-            flag, res = exec_command(f'prop wl {level} @{uuid}')
+            flag, res = exec_command(f'prop wl {level}', uuid)
             if res['data'] == '玩家不存在。':
                 context = {
                     'message': "玩家不存在，请检查uid!	",
