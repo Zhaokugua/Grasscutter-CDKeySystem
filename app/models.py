@@ -29,3 +29,9 @@ class CDkey_Record(models.Model):
     user_uid = models.CharField(max_length=16)
 
 
+# 记录uid上次签到时间来判断今天是否已签到
+class Daily_Sign_Record(models.Model):
+    # 最近签到日期
+    sign_date = models.DateField(auto_now=True)
+    # 签到的uid
+    sign_uid = models.CharField(max_length=16)

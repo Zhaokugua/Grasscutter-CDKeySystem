@@ -6,7 +6,6 @@ from app.CONSTANTS import *
 from app.models import *
 
 # Create your views here.
-cdk_list = [x.key for x in CDKey.objects.all()]  # 获取所有key
 
 online_num = get_online()[0]
 
@@ -125,13 +124,14 @@ def create_cdkey(request):
     if request.session.get('auth') != 'jixiaob.cn':
         return HttpResponseRedirect('auth')
 
+    cdk_list = [x.key for x in CDKey.objects.all()]  # 获取所有key
+
     if request.method == 'POST':
         cdk_value = request.POST.get('cdk_value')
         end_time = request.POST.get('end_time')
         total_num = request.POST.get('total_num')
         cdk_num = request.POST.get('cdk_num')
         num_by_uid = request.POST.get('num_by_uid')
-        global cdk_list
 
         new_cdk_list = []
         while len(new_cdk_list) < int(cdk_num):
@@ -206,16 +206,34 @@ def sign(request):
     if request.method == 'POST':
         # 从前端获取用户uid
         uuid = request.POST.get('uuid')
+
+        # 判断数据库里是否有记录和今天是否已经签到
+        user = Daily_Sign_Record.objects.filter(sign_uid=uuid).first()
+        if user:
+            if user:
+                if user.sign_date == datetime.date.today():
+                    context = {
+                        'message': "你今天已经签到过了哦！",
+                        'online_num': online_num,
+                    }
+                    return render(request, '每日签到.html', context=context)
+            else:
+                user = Daily_Sign_Record(sign_uid=uuid)
         # 可以用exec_command执行一个命令来获取签到奖励，用户离线时可以用邮件命令发送奖励
         # 然后context的message显示签到结果返回到页面上显示
-        # 例：
-        # exec_command('/give 202 x1000', uuid)   # give命令需要玩家在线
-        # context = {
-        #     'message': "签到成功！获得1000摩拉！",
-        #     'online_num': online_num,
-        # }
+        # 然后写到数据库记录一下今天已签到
+        flag, res = exec_command('/give 202 x1000', uuid)   # give命令需要玩家在线
+        if not flag:
+            context = {
+                'message': f"执行兑换时出现异常！请联系管理员！	{str(res['data'])}",
+                'online_num': online_num,
+            }
+            return render(request, 'cdkey兑换.html', context=context)
+        # 成功了就更新一下表，表示今天签到了
+        user.save()
+        # 返回信息
         context = {
-            'message': "功能暂未开放!	",
+            'message': "签到成功！获得1000摩拉！",
             'online_num': online_num,
         }
         return render(request, '每日签到.html', context=context)
