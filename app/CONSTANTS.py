@@ -193,10 +193,12 @@ def exec_command(command, uid=None):
                 return True, result
             else:
                 print('YSGM命令执行失败！')
+                result['data'] = '执行失败，可能是玩家未上线' if not result['data'] else result['data']
                 return False, result
-        except:
+        except BaseException as e:
             print('YSGM命令执行失败！')
-            return False, None
+            print(e)
+            return False, {'data': '请求错误，检查服务器'}
 
     if uid:
         command = command + f' @{uid}'
