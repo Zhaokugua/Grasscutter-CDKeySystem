@@ -217,4 +217,8 @@ def exec_command(command, uid=None):
         print('opencommand 命令执行成功！')
         print(command)
         print(res_exec)
+        if res_exec['data'] == '玩家不存在。':
+            return False, res_exec
+        if '当前目标离线' in res_exec['data']:
+            return False, res_exec
         return True, res_exec

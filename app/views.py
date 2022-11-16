@@ -210,15 +210,14 @@ def sign(request):
         # 判断数据库里是否有记录和今天是否已经签到
         user = Daily_Sign_Record.objects.filter(sign_uid=uuid).first()
         if user:
-            if user:
-                if user.sign_date == datetime.date.today():
-                    context = {
-                        'message': "你今天已经签到过了哦！",
-                        'online_num': online_num,
-                    }
-                    return render(request, '每日签到.html', context=context)
-            else:
-                user = Daily_Sign_Record(sign_uid=uuid)
+            if user.sign_date == datetime.date.today():
+                context = {
+                    'message': "你今天已经签到过了哦！",
+                    'online_num': online_num,
+                }
+                return render(request, '每日签到.html', context=context)
+        else:
+            user = Daily_Sign_Record(sign_uid=uuid)
         # 可以用exec_command执行一个命令来获取签到奖励，用户离线时可以用邮件命令发送奖励
         # 然后context的message显示签到结果返回到页面上显示
         # 然后写到数据库记录一下今天已签到
@@ -228,7 +227,7 @@ def sign(request):
                 'message': f"执行兑换时出现异常！请联系管理员！	{str(res['data'])}",
                 'online_num': online_num,
             }
-            return render(request, 'cdkey兑换.html', context=context)
+            return render(request, '每日签到.html', context=context)
         # 成功了就更新一下表，表示今天签到了
         user.save()
         # 返回信息
