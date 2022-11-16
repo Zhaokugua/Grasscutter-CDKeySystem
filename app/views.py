@@ -59,7 +59,7 @@ def cdkey(request):
         # 判断每个用户的使用次数
         used_times = len(CDkey_Record.objects.filter(user_uid=user_uid).filter(key=cdkey_value))
 
-        if used_times > cdk_obj.num_by_uid:
+        if used_times >= cdk_obj.num_by_uid:
             context = {
                 'message': "同一个兑换码单个uid使用次数达到上限!	",
                 'online_num': online_num,
@@ -130,6 +130,7 @@ def create_cdkey(request):
         end_time = request.POST.get('end_time')
         total_num = request.POST.get('total_num')
         cdk_num = request.POST.get('cdk_num')
+        num_by_uid = request.POST.get('num_by_uid')
         global cdk_list
 
         new_cdk_list = []
@@ -145,6 +146,7 @@ def create_cdkey(request):
             # new_cdk.mail_template_id = 1111
             new_cdk.end_time = end_time
             new_cdk.total_num = total_num
+            new_cdk.num_by_uid = num_by_uid
             new_cdk.save()
             new_cdk_list.append(cdk_code)
         cdk_str = " ".join(new_cdk_list)
