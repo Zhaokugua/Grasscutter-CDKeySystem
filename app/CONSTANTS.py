@@ -208,6 +208,7 @@ def exec_command(command, uid=None):
     }
     res_exec = requests.post(req_url, verify=False, json=json_exec).json()
     if res_exec['retcode'] != 200:
+        res_exec['data'] = '' if not res_exec['data'] else res_exec['data']
         print('opencommand 命令执行异常！')
         return False, res_exec
     else:
