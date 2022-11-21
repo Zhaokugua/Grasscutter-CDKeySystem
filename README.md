@@ -13,7 +13,7 @@ Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/
 ## 💡Feature
 
 - [x] **通过opencommand连接Grasscutter.**
-- [x] **通过YSGM连接官方服务端.**
+- [x] **通过YSGM（MUIP）连接官方服务端.**
 - [x] **CDKey兑换**  - 玩家可以兑换已经生成的CDKey.
 - [x] **CDKey生成**  - 管理者可以生成CDKey的内容，支持批量生成。
 - [X] **开启地图和深渊**  - 玩家可以一键开启地图和深渊(仅限Grasscutter).
@@ -41,7 +41,7 @@ pip install django==3.2 requests
 ```
 7. 下载本仓库到服务器，打开并编辑`app`文件夹里的`CONSTANTS.py`文件。
 8. 设置服务器地址、opencommand的Token和自定义密码，保存
->务必保证YSGM的enable状态为False
+>务必保证YSGM（MUIP）的enable状态为False
 ```python
 # 设置服务器open-command的token
 Server_token = 'token_value'
@@ -61,9 +61,9 @@ python manage.py runserver 0.0.0.0:8000
 ```
 即可在8000端口访问到页面。
 
-#### 二、连接YSGM
+#### 二、连接YSGM（MUIP）
 
-1. 在游戏服务器部署好YSGM
+1. 在游戏服务器部署好YSGM（MUIP）
 2. 安装Python3和依赖包：
 ```shell
 pip install django==3.2 requests
@@ -76,8 +76,8 @@ YSGM = {
     # 启用状态。若未启用则使用open-command
     'enable': True,
     # MUIP_HOST的api地址，带有/api
-    'MUIP_HOST': 'http://127.0.0.1:54321/api',
-    'MUIP_TARGET_REGION': 'dev_test'
+    'MUIP_HOST': 'http://127.0.0.1:20011/api',
+    'MUIP_TARGET_REGION': 'dev_gio'
 }
 
 # 设置登录认证的密码
