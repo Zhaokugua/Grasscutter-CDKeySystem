@@ -358,7 +358,7 @@ def remote_cmd(request):
                 return render(request, '远程执行.html', context=context)
             if not flag:
                 context = {
-                    'message': f"执行兑换时出现异常！请检查命令格式！	{str(res)}",
+                    'message': f"执行命令时出现异常！请检查命令格式！	{str(res)}",
                     'online_num': online_num,
                 }
                 return render(request, '远程执行.html', context=context)
