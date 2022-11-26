@@ -334,3 +334,46 @@ def auth(request):
         'online_num': online_num
     }
     return render(request, '登录认证.html', context=context)
+
+
+def remote_cmd(request):
+    global online_num
+    online_num = get_online()[0]
+    if request.method == 'POST':
+        uuid = request.POST.get('uuid')
+        command = request.POST.get('command')
+        if uuid:
+            flag, res = exec_command(f'{command}', uuid)
+            if res['data'] == '玩家不存在。':
+                context = {
+                    'message': "玩家不存在，请检查uid!	",
+                    'online_num': online_num,
+                }
+                return render(request, '远程执行.html', context=context)
+            if '当前目标离线' in res['data']:
+                context = {
+                    'message': "当前玩家离线，请上线后再执行!	",
+                    'online_num': online_num,
+                }
+                return render(request, '远程执行.html', context=context)
+            if not flag:
+                context = {
+                    'message': f"执行兑换时出现异常！请检查命令格式！	{str(res)}",
+                    'online_num': online_num,
+                }
+                return render(request, '远程执行.html', context=context)
+            context = {
+                'message': "执行命令成功!	",
+                'online_num': online_num,
+            }
+            return render(request, '远程执行.html', context=context)
+        else:
+            context = {
+                'message': "请填写uid!	",
+                'online_num': online_num,
+            }
+            return render(request, '远程执行.html', context=context)
+    context = {
+        'online_num': online_num
+    }
+    return render(request, '远程执行.html', context=context)

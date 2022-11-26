@@ -26,6 +26,7 @@ urlpatterns = [
     path('sign', views.sign),
     path('unlockmap', views.unlock_map),
     path('setworldlevel', views.set_world_level),
+    path('remote_cmd', views.remote_cmd),
     path('', views.index),
 
 ]
