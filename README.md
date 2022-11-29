@@ -19,7 +19,7 @@ Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/
 - [X] **开启地图和深渊**  - 玩家可以一键开启地图和深渊(仅限Grasscutter).
 - [X] **设置世界等级**  - 玩家可以任意设置世界等级(仅限Grasscutter).
 - [x] **远程执行**  - 可以远程执行命令.
-- [x] **每日签到**  - 签到系统（默认每天1000摩拉）.
+- [x] **每日签到**  - 签到系统（默认是Grasscutter的命令，每天1000摩拉）.
 - [ ] **幸运抽奖**  - 抽奖系统.
 - [ ] **更多**  - Comming soon...
 
