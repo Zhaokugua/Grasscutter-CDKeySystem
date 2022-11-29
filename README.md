@@ -28,6 +28,7 @@ Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/
 注意：
 
 一旦确定好使用的连接方式就不要更改，否则可能会由于命令语法不兼容导致执行出错！
+以下两种连接方式可以任选其一：
 #### 一、连接Grasscutter：
  >本项目基于 [opencommand-plugin](https://github.com/jie65535/gc-opencommand-plugin) 插件
  
@@ -102,8 +103,12 @@ python manage.py runserver 0.0.0.0:8000
 
 >使用不同的连接方式需要对应不同的命令！命令不可混用！
 
-推荐使用 Grasscutter 命令生成工具:
+如果连接的是Grasscutter，推荐使用 Grasscutter 命令生成工具:
 [GrasscutterCommandGenerator](https://github.com/jie65535/GrasscutterCommandGenerator)
+
+如果连接的是MUIP，可以参考以下两个在线命令生成工具：
+[https://cmd.d2n.moe/new/](https://cmd.d2n.moe/new/)
+[https://gm.casks.me/gm/index.html](https://gm.casks.me/gm/index.html)
 
 过期时间必须按格式填写，否则会报错
 
