@@ -5,7 +5,7 @@
 
 Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/Grasscutter) 外置系统, 你可以用它来轻松的兑换和分发游戏的CDKey
 
-* 已适配YSGM官方服务端
+* 已适配YSGM（MUIP）官方服务端
 
 推荐使用 Grasscutter 命令生成工具:
 [GrasscutterCommandGenerator](https://github.com/jie65535/GrasscutterCommandGenerator)
