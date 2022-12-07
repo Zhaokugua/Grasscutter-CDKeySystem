@@ -155,8 +155,11 @@ python manage.py runserver 0.0.0.0:8000
    {#  <a href="./remote_cmd" class="card-title btn btn-success button-click category-button checked">远程执行</a> #}
    ```
    保存。
+   
    ②注释掉可能还不够，有写人可能会猜出地址，还要禁掉对应的路由
+   
    修改'djangoProject_genshin_player_backend/urls.py'
+   
    在对应的功能的路由前加上# 号注释这一行
    ```python
    # path('remote_cmd', views.remote_cmd),
