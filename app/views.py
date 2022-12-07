@@ -213,6 +213,13 @@ def sign(request):
         # 从前端获取用户uid
         uuid = request.POST.get('uuid')
 
+        if not uuid:
+            context = {
+                'message': "请填写uid！",
+                'online_num': online_num,
+            }
+            return render(request, '每日签到.html', context=context)
+
         # 判断数据库里是否有记录和今天是否已经签到
         user = Daily_Sign_Record.objects.filter(sign_uid=uuid).first()
         if user:
