@@ -146,3 +146,20 @@ python manage.py runserver 0.0.0.0:8000
     也可以把它调小，增加获取在线人数的时效性，但是可能请求服务器获取真实人数的频率会变高。
 
     当然也可以把它调为0或者负数，这样就和没有缓存一样，每次加载页面都会请求服务器获取真实人数，降低页面响应速度。
+3. 不想使用的功能
+   
+   可能有写提供的功能并不想使用，可以进行如下操作，以远程执行为例：
+   ①首先修改`templates/用户后台.html`，把里面的按钮使用 {#  #} 引起来，注释掉
+   ```html
+   {#  <a href="./remote_cmd" class="card-title btn btn-success button-click category-button checked">远程执行</a> #}
+   ```
+   保存。
+   ②注释掉可能还不够，有写人可能会猜出地址，还要禁掉对应的路由
+   修改'djangoProject_genshin_player_backend/urls.py'
+   在对应的功能的路由前加上# 号注释这一行
+   ```python
+   # path('remote_cmd', views.remote_cmd),
+   ```
+   保存。
+   
+   这样就可以把不想要的功能去掉了。
