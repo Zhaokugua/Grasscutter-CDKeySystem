@@ -8,8 +8,6 @@ from app.models import *
 # Create your views here.
 
 online_num = get_online()[0]
-# 正在执行兑换cdk的uid列表，防止重复兑换
-on_using_cdk_list = []
 
 if not initialize():
     print('服务器连接失败！可能无法正常进行操作！')
@@ -67,36 +65,25 @@ def cdkey(request):
             }
             return render(request, 'cdkey兑换.html', context=context)
 
-        if user_uid in on_using_cdk_list:
-            context = {
-                'message': "正在执行兑换，请不要连续多次点击兑换!	",
-                'online_num': online_num,
-            }
-            return render(request, 'cdkey兑换.html', context=context)
-
         result_list = []
         success = True
         for command in cdk_obj.cdk_value.split('\r\n'):
 
             flag, res = exec_command(command, uid=user_uid)
-            # 加入正在兑换的用户列表
-            on_using_cdk_list.append(user_uid) if user_uid not in on_using_cdk_list else None
 
             if res['data'] == '玩家不存在。':
                 context = {
                     'message': "玩家不存在，请检查uid!	",
                     'online_num': online_num,
                 }
-                # 兑换失败，移除列表并返回错误信息
-                on_using_cdk_list.remove(user_uid) if user_uid in on_using_cdk_list else None
+
                 return render(request, 'cdkey兑换.html', context=context)
             if '当前目标离线' in res['data']:
                 context = {
                     'message': "当前玩家离线，请上线后再执行!	",
                     'online_num': online_num,
                 }
-                # 兑换失败，移除列表并返回错误信息
-                on_using_cdk_list.remove(user_uid) if user_uid in on_using_cdk_list else None
+
                 return render(request, 'cdkey兑换.html', context=context)
             if not flag:
                 success = False
@@ -106,8 +93,7 @@ def cdkey(request):
                 'message': f"执行兑换时出现异常！请联系管理员！	{str(result_list)}",
                 'online_num': online_num,
             }
-            # 兑换失败，移除列表并返回错误信息
-            on_using_cdk_list.remove(user_uid) if user_uid in on_using_cdk_list else None
+
             return render(request, 'cdkey兑换.html', context=context)
         # 修改兑换码已使用次数
         cdk_obj.used_num += 1
@@ -121,8 +107,7 @@ def cdkey(request):
             'message': "兑换成功!	",
             'online_num': online_num,
         }
-        # 兑换成功，移除列表
-        on_using_cdk_list.remove(user_uid) if user_uid in on_using_cdk_list else None
+
         return render(request, 'cdkey兑换.html', context=context)
     context = {
         'online_num': online_num

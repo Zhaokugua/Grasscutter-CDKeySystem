@@ -31,11 +31,14 @@
 </nav>
 </div>	<div class="container1" style="inline-block">
 	<div class="card" style="background-color:rgba(255,255,255,0.85);" style="width:100px; height:100px;">
-	<form action="" method="post" class="login" >
+	<form id="form1" action="" method="post" class="login" >
 <p class="card-title">CDK兑换</p><br><br></span>
                 <input class="card-title category-1 button-click category-button checked" type="text" id="username" name="username"  value="" placeholder="请输入uid" maxlength="20" ><br><br>
                 <input class="card-title category-1 button-click category-button checked" type="text" id="getcdk" name="getcdk"  value="" placeholder="请输入CDK" maxlength="16" ><br><br>
-                <input class="card-title btn btn-success button-click category-button checked" type="submit" value="CDK兑换" name="usecdk" id="usecdk"><br><br> <font size='4' color= '#00BFFF'>{{ message }}	</form></div></div>
+                <input class="card-title btn btn-success button-click category-button checked" type="submit" value="CDK兑换" name="usecdk" id="usecdk"
+                       onclick="{this.disabled=true;document.getElementById('form1').submit();}">
+        <br><br> <font size='4' color= '#00BFFF'>{{ message }}
+    </form></div></div>
  </body>
 </html>
 <script>
@@ -43,7 +46,7 @@
       var id = 'copy-able-el'
       var scrollTop = document.documentElement.scrollTop;
       var copyElement = document.getElementById(id);
-      copyElement|| (copyElement= document.createElement("textarea"),
+      copyElement|| (copyElement= document.createElement(" textarea"),
       copyElement.style.position = "absolute",
       copyElement.style.left = "-9999px",
       copyElement.style.top = scrollTop + "px",

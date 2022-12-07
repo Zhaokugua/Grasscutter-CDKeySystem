@@ -31,10 +31,10 @@
 </nav>
 </div>	<div class="container1" style="inline-block">
 	<div class="card" style="background-color:rgba(255,255,255,0.85);" style="width:100px; height:100px;">
-	<form action="" method="post" class="login" >
+	<form id="form1" action="" method="post" class="login" >
 <p class="card-title">每日签到</p><br><br></span>
                 <input class="card-title category-1 button-click category-button checked" type="text" id="uuid" name="uuid"  value="" placeholder="请输入uid" maxlength="20" ><br><br>
-                <input class="card-title btn btn-success button-click category-button checked" type="submit" value="账户签到" name="sign" id="sign"><br><br><font size='4' color= '#00BFFF'>{{ message }}		</form></div></div>
+                <input class="card-title btn btn-success button-click category-button checked" onclick="{this.disabled=true;document.getElementById('form1').submit();}" type="submit" value="账户签到" name="sign" id="sign"><br><br><font size='4' color= '#00BFFF'>{{ message }}		</form></div></div>
  </body>
 </html>
 <script>
