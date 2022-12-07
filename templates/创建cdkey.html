@@ -42,8 +42,8 @@
                 <input class="card-title category-1 button-click category-button checked" type="text" id="total_num" name="total_num"  value="1" placeholder="请输入单个CDK可以使用的次数" maxlength="20" ><br><br>
                 <a>请输入执行的命令(回车分隔)</a>
         <textarea class="card-title category-1 button-click category-button checked" type="text" id="cdk_value" name="cdk_value" placeholder="请输入执行的命令(回车分隔)"  >/give 201 x100</textarea><br><br>
-                <a>请按格式输入过期时间</a>
-                <input class="card-title category-1 button-click category-button checked" type="text" id="end_time" name="end_time"  value="2023-10-1" placeholder="请输入过期时间"  ><br><br>
+                <a>请选择过期时间</a>
+                <input class="card-title category-1 button-click category-button checked" type="date" id="end_time" name="end_time"  value="{{ default_time }}" placeholder="请输入过期时间"  ><br><br>
             <a>生成的个数</a>
                 <input class="card-title category-1 button-click category-button checked" type="text" id="cdk_num" name="cdk_num"  value="1" placeholder="请输入生成cdk的个数"  ><br><br>
          <a>每个uid可以使用该CDK的次数</a>

@@ -1,7 +1,7 @@
 
 # Grasscutter-CDKeySystem - Grasscutter 外置CDKey
 
-![img.png](img.png)
+![主界面](image/ScreenShot1.JPG)
 
 Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/Grasscutter) 外置系统, 你可以用它来轻松的兑换和分发游戏的CDKey
 
@@ -95,7 +95,7 @@ python manage.py runserver 0.0.0.0:8000
 设置CDKey的地址：/cdk_create
 
 进入需要验证密码，即刚刚设置的`auth_pwd`
-![img_1.png](img_1.png)
+![创建CDK](image/ScreenShot2.JPG)
 
 可以设置单个CDKey的使用次数
 
@@ -110,8 +110,37 @@ python manage.py runserver 0.0.0.0:8000
 [https://cmd.d2n.moe/new/](https://cmd.d2n.moe/new/)
 [https://gm.casks.me/gm/index.html](https://gm.casks.me/gm/index.html)
 
-过期时间必须按格式填写，否则会报错
 
 生成的个数可以填多个就可以批量生成，但是不要过多。
 
+选择限制每个uid可以兑换的同一个CDK的个数
+
 生成速度取决于服务器性能。
+
+
+### 高级
+
+1. 设置CDK的默认过期时间。
+
+    创建CDK时如果不想每次都设置一个时间，可以在`CONSTANTS.py`中设置默认过期时间
+   ```python
+    # 设置CDK默认过期时间（默认为90天）
+    CDK_expire_day = 90
+    ```
+    >这样就会自动计算90天之后的日期，然后自动填写在生成CDK页面的表单上。
+2. 设置右上角在线人数缓存时间。
+    >右上角的在线人数之前一直都是打开一次页面就请求服务器获取一次，因此极大的拖慢了页面的加载速度。
+
+   >因此在2022/12/7引入缓存机制，默认是60秒之内只请求一次服务器获取真实的服务器在线人数，其余的都将使用缓存，而不是重新请求服务器，使得页面访问速度大大提高。
+   
+   可以在`CONSTANTS.py`中更改默认的缓存过期时间：
+    ```python
+    # 设置获取在线人数的缓存时间秒数，时间过短可能导致所有页面加载缓慢和大量的服务器查询人数请求
+    # 默认为60秒
+    online_cache_time = 60
+    ```
+   可以将它调大，这样请求服务器获取真实在线人数的频率会更低，但是在线人数的时效性会大幅降低。
+   
+    也可以把它调小，增加获取在线人数的时效性，但是可能请求服务器获取真实人数的频率会变高。
+
+    当然也可以把它调为0或者负数，这样就和没有缓存一样，每次加载页面都会请求服务器获取真实人数，降低页面响应速度。

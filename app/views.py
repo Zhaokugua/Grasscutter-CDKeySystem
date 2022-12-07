@@ -127,6 +127,8 @@ def create_cdkey(request):
     """
     global online_num
     online_num = get_online()[0]
+    # 配置文件可以设置兑换码的默认过期时间，默认90天过期
+    default_time = str(datetime.date.today() + datetime.timedelta(days=CDK_expire_day))
     if request.session.get('auth') != 'jixiaob.cn':
         return HttpResponseRedirect('auth')
 
@@ -158,11 +160,14 @@ def create_cdkey(request):
         cdk_str = " ".join(new_cdk_list)
         context = {
             'online_num': online_num,
-            'message': f'生成CDK成功！\n{cdk_str}'
+            'message': f'生成CDK成功！\n{cdk_str}',
+            'default_time': default_time
+
         }
         return render(request, '创建cdkey.html', context=context)
     context = {
-        'online_num': online_num
+        'online_num': online_num,
+        'default_time': default_time
     }
     return render(request, '创建cdkey.html', context=context)
 
