@@ -150,7 +150,7 @@ python manage.py runserver 0.0.0.0:8000
    
    可能有些提供的功能并不想使用，可以进行如下操作，以远程执行为例：
    
-   ①首先修改`templates/用户后台.html`，把里面的按钮使用 {#  #} 引起来，注释掉
+   ①首先修改`templates/用户后台.html`，把里面的按钮使用` {#  #} `引起来，注释掉
    ```html
    {#  <a href="./remote_cmd" class="card-title btn btn-success button-click category-button checked">远程执行</a> #}
    ```
@@ -160,7 +160,7 @@ python manage.py runserver 0.0.0.0:8000
    
    修改'djangoProject_genshin_player_backend/urls.py'
    
-   在对应的功能的路由前加上# 号注释这一行
+   在对应的功能的路由前加上`# `注释这一行
    ```python
    # path('remote_cmd', views.remote_cmd),
    ```
