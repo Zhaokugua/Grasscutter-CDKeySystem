@@ -20,6 +20,7 @@ Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/
 - [X] **设置世界等级**  - 玩家可以任意设置世界等级(仅限Grasscutter).
 - [x] **远程执行**  - 可以远程执行命令.
 - [x] **每日签到**  - 签到系统（默认是Grasscutter的命令，每天1000摩拉）.
+- [x] **自定义背景图** - 可以自定义页面的背景图链接（比如随机图）
 - [ ] **幸运抽奖**  - 抽奖系统.
 - [ ] **更多**  - Comming soon...
 
@@ -130,6 +131,8 @@ python manage.py runserver 0.0.0.0:8000
     CDK_expire_day = 90
     ```
     >这样就会自动计算90天之后的日期，然后自动填写在生成CDK页面的表单上。
+
+
 2. 设置右上角在线人数缓存时间。
     >右上角的在线人数之前一直都是打开一次页面就请求服务器获取一次，因此极大的拖慢了页面的加载速度。
 
@@ -146,6 +149,8 @@ python manage.py runserver 0.0.0.0:8000
     也可以把它调小，增加获取在线人数的时效性，但是可能请求服务器获取真实人数的频率会变高。
 
     当然也可以把它调为0或者负数，这样就和没有缓存一样，每次加载页面都会请求服务器获取真实人数，降低页面响应速度。
+
+
 3. 不想使用的功能
    
    可能有些提供的功能并不想使用，可以进行如下操作，以远程执行为例：
@@ -167,3 +172,18 @@ python manage.py runserver 0.0.0.0:8000
    保存。
    
    这样就可以把不想要的功能去掉了。
+
+
+4. 自定义网页背景图
+   
+   大家还是喜欢背景图是随机图的多，于是直接提供了一个修改图片地址的设置参数，这样就不用一个个到html里面修改了。
+   ```python
+   # 设置网页背景图链接，默认是/static/images/bg.jpg文件
+   # 也可以设置一些随机图的地址 比如https://api.mtyqx.cn/tapi/random.php
+   # 更多随机图地址详见我博客https://blog.jixiaob.cn/?post=93
+   background_image = './usr/theme/images/bg.jpg'
+   ```
+   默认就是/static/images/bg.jpg这个图片文件，
+   当然也可以改成一些随机图的地址，比如[https://api.mtyqx.cn/tapi/random.php](https://api.mtyqx.cn/tapi/random.php)
+   
+   [我博客](https://blog.jixiaob.cn/?post=93) 也分享了一些其他的随机图地址以供参考=w=

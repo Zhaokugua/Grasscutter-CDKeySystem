@@ -25,11 +25,16 @@ Mail_default_expire_time = int((datetime.datetime.now() + datetime.timedelta(day
 # 设置CDK默认过期时间（默认为90天）
 CDK_expire_day = 90
 
+# 设置网页背景图链接，默认是/static/images/bg.jpg文件
+# 也可以设置一些随机图的地址 比如https://api.mtyqx.cn/tapi/random.php
+# 更多随机图地址详见我博客https://blog.jixiaob.cn/?post=93
+background_image = './usr/theme/images/bg.jpg'
+
 # 设置获取在线人数的缓存时间秒数，时间过短可能导致所有页面加载缓慢和大量的服务器查询人数请求
 # 默认为1分钟
 online_cache_time = 60
 
-# 设置使用Crepe-Inc-YSGM
+# 设置使用Crepe-Inc-YSGM（MUIP方法）
 YSGM = {
     # 启用状态。若未启用则使用open-command
     'enable': False,
@@ -266,6 +271,13 @@ def exec_command(command, uid=None):
     # 所以如果生成cdk的时候用的命令是gc的，执行的时候一定不要改成GM的！
     command = command[1:] if command.startswith('/') or command.startswith('!') else command
     if YSGM['enable']:
+
+        # 如果填写了uid，判断uid是否为纯数字（官端应该只有纯数字uid）
+        # 防止兑换cdk的时候uid加字母卡多次兑换bug
+        if uid:
+            if not uid.isdigit():
+                return False, {'data': 'uid不是纯数字！'}
+
         params = YSGM_api(1116, uid=uid, msg=command)
         req_url = YSGM['MUIP_HOST']
         try:

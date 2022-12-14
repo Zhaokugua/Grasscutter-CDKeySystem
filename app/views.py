@@ -17,7 +17,8 @@ def index(request):
     global online_num
     online_num = get_online()[0]
     context = {
-        'online_num': online_num
+        'online_num': online_num,
+        'bg_url': background_image,
     }
     return render(request, '用户后台.html', context=context)
 
@@ -33,6 +34,7 @@ def cdkey(request):
             context = {
                 'message': "请填写uid!	",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, 'cdkey兑换.html', context=context)
         if cdk_obj:
@@ -40,18 +42,21 @@ def cdkey(request):
                 context = {
                     'message': "兑换码已过期!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, 'cdkey兑换.html', context=context)
             if cdk_obj.used_num >= cdk_obj.total_num:
                 context = {
                     'message': "兑换码已被使用!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, 'cdkey兑换.html', context=context)
         else:
             context = {
                 'message': "无效的兑换码!	",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, 'cdkey兑换.html', context=context)
 
@@ -62,6 +67,7 @@ def cdkey(request):
             context = {
                 'message': "同一个兑换码单个uid使用次数达到上限!	",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, 'cdkey兑换.html', context=context)
 
@@ -75,6 +81,7 @@ def cdkey(request):
                 context = {
                     'message': "玩家不存在，请检查uid!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
 
                 return render(request, 'cdkey兑换.html', context=context)
@@ -82,6 +89,7 @@ def cdkey(request):
                 context = {
                     'message': "当前玩家离线，请上线后再执行!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
 
                 return render(request, 'cdkey兑换.html', context=context)
@@ -92,6 +100,7 @@ def cdkey(request):
             context = {
                 'message': f"执行兑换时出现异常！请联系管理员！	{str(result_list)}",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
 
             return render(request, 'cdkey兑换.html', context=context)
@@ -106,11 +115,13 @@ def cdkey(request):
         context = {
             'message': "兑换成功!	",
             'online_num': online_num,
+            'bg_url': background_image,
         }
 
         return render(request, 'cdkey兑换.html', context=context)
     context = {
-        'online_num': online_num
+        'online_num': online_num,
+        'bg_url': background_image
     }
     return render(request, 'cdkey兑换.html', context=context)
 
@@ -161,13 +172,15 @@ def create_cdkey(request):
         context = {
             'online_num': online_num,
             'message': f'生成CDK成功！\n{cdk_str}',
-            'default_time': default_time
+            'default_time': default_time,
+            'bg_url': background_image,
 
         }
         return render(request, '创建cdkey.html', context=context)
     context = {
         'online_num': online_num,
-        'default_time': default_time
+        'default_time': default_time,
+        'bg_url': background_image,
     }
     return render(request, '创建cdkey.html', context=context)
 
@@ -203,10 +216,12 @@ def lucky(request):
         context = {
             'message': "功能暂未开放!	",
             'online_num': online_num,
+            'bg_url': background_image,
         }
         return render(request, '幸运抽奖.html', context=context)
     context = {
-        'online_num': online_num
+        'online_num': online_num,
+        'bg_url': background_image,
     }
     return render(request, '幸运抽奖.html', context=context)
 
@@ -222,6 +237,7 @@ def sign(request):
             context = {
                 'message': "请填写uid！",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, '每日签到.html', context=context)
 
@@ -232,6 +248,7 @@ def sign(request):
                 context = {
                     'message': "你今天已经签到过了哦！",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, '每日签到.html', context=context)
         else:
@@ -244,6 +261,7 @@ def sign(request):
             context = {
                 'message': f"执行兑换时出现异常！请联系管理员！	{str(res['data'])}",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, '每日签到.html', context=context)
         # 成功了就更新一下表，表示今天签到了
@@ -252,10 +270,12 @@ def sign(request):
         context = {
             'message': "签到成功！获得1000摩拉！",
             'online_num': online_num,
+            'bg_url': background_image,
         }
         return render(request, '每日签到.html', context=context)
     context = {
-        'online_num': online_num
+        'online_num': online_num,
+        'bg_url': background_image
     }
     return render(request, '每日签到.html', context=context)
 
@@ -272,27 +292,32 @@ def unlock_map(request):
                 context = {
                     'message': "玩家不存在，请检查uid!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, '解锁深渊.html', context=context)
             if '当前目标离线' in res['data']:
                 context = {
                     'message': "当前玩家离线，请上线后再执行!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, '解锁深渊.html', context=context)
             context = {
                 'message': "解锁成功!	",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, '解锁深渊.html', context=context)
         else:
             context = {
                 'message': "请填写uid!	",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, '解锁深渊.html', context=context)
     context = {
-        'online_num': online_num
+        'online_num': online_num,
+        'bg_url': background_image,
     }
     return render(request, '解锁深渊.html', context=context)
 
@@ -309,27 +334,32 @@ def set_world_level(request):
                 context = {
                     'message': "玩家不存在，请检查uid!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, '设置世界等级.html', context=context)
             if '当前目标离线' in res['data']:
                 context = {
                     'message': "当前玩家离线，请上线后再执行!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, '设置世界等级.html', context=context)
             context = {
                 'message': "设置成功!	",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, '设置世界等级.html', context=context)
         else:
             context = {
                 'message': "请填写uid!	",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, '设置世界等级.html', context=context)
     context = {
-        'online_num': online_num
+        'online_num': online_num,
+        'bg_url': background_image,
     }
     return render(request, '设置世界等级.html', context=context)
 
@@ -345,11 +375,13 @@ def auth(request):
         else:
             context = {
                 'message': '认证失败！',
-                'online_num': online_num
+                'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, '登录认证.html', context=context)
     context = {
-        'online_num': online_num
+        'online_num': online_num,
+        'bg_url': background_image,
     }
     return render(request, '登录认证.html', context=context)
 
@@ -366,32 +398,38 @@ def remote_cmd(request):
                 context = {
                     'message': "玩家不存在，请检查uid!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, '远程执行.html', context=context)
             if '当前目标离线' in res['data']:
                 context = {
                     'message': "当前玩家离线，请上线后再执行!	",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, '远程执行.html', context=context)
             if not flag:
                 context = {
                     'message': f"执行命令时出现异常！请检查命令格式！	{str(res)}",
                     'online_num': online_num,
+                    'bg_url': background_image,
                 }
                 return render(request, '远程执行.html', context=context)
             context = {
                 'message': "执行命令成功!	",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, '远程执行.html', context=context)
         else:
             context = {
                 'message': "请填写uid!	",
                 'online_num': online_num,
+                'bg_url': background_image,
             }
             return render(request, '远程执行.html', context=context)
     context = {
-        'online_num': online_num
+        'online_num': online_num,
+        'bg_url': background_image,
     }
     return render(request, '远程执行.html', context=context)
