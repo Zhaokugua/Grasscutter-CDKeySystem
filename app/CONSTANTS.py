@@ -4,6 +4,7 @@
 @Author : Zhaokugua
 @Time : 2022/10/11 9:40
 """
+import time
 import requests
 import random
 import datetime
@@ -269,6 +270,21 @@ def generate_code(code_len=6):
 def exec_command(command, uid=None):
     # 执行命令没写转换
     # 所以如果生成cdk的时候用的命令是gc的，执行的时候一定不要改成GM的！
+
+    # 20230123 新增延迟执行命令（单位毫秒）
+    if command[:5] == 'sleep':
+        sleep_time = command.replace('sleep', '')
+        # 判断后面剩下的是不是纯数字
+        if sleep_time.isdigit():
+            # 是就sleep
+            sleep_time = int(sleep_time)
+            print(f'正在执行延时命令：sleep{sleep_time}...')
+            time.sleep(sleep_time/1000)
+            return True, {'data': f'延迟命令执行{sleep_time}ms'}
+        else:
+            # 不是就返回错误
+            return False, {'data': f'延迟命令语法错误！正确的语法示例：sleep100'}
+
     command = command[1:] if command.startswith('/') or command.startswith('!') else command
     if YSGM['enable']:
 
