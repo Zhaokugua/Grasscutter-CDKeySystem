@@ -10,6 +10,8 @@ Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/
 推荐使用 Grasscutter 命令生成工具:
 [GrasscutterCommandGenerator](https://github.com/jie65535/GrasscutterCommandGenerator)
 
+前端页面源自[blueyst](https://github.com/blueyst/blueyst.github.io)
+
 ## 💡Feature
 
 - [x] **通过opencommand连接Grasscutter.**
