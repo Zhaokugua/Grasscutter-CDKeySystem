@@ -59,7 +59,19 @@ def cdkey(request):
                 'bg_url': background_image,
             }
             return render(request, 'cdkey兑换.html', context=context)
-
+        
+        # MUIP的UID只能是不包含字母、特殊符号并且不能以0开头的纯数字
+        if YSGM['enable']:
+            try:
+                user_uid = f'{int(user_uid)}'
+            except ValueError as e:
+                context = {
+                    'message': "UID只能为纯数字!	",
+                    'online_num': online_num,
+                    'bg_url': background_image,
+                }
+                return render(request, 'cdkey兑换.html', context=context)    
+        
         # 判断每个用户的使用次数
         used_times = len(CDkey_Record.objects.filter(user_uid=user_uid).filter(key=cdkey_value))
 
