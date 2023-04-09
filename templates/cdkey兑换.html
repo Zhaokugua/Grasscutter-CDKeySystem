@@ -33,7 +33,7 @@
 	<div class="card" style="background-color:rgba(255,255,255,0.85);" style="width:100px; height:100px;">
 	<form id="form1" action="" method="post" class="login" >
 <p class="card-title">CDK兑换</p><br><br></span>
-                <input class="card-title category-1 button-click category-button checked" type="text" oninput = "value=value.replace(/[^\d]/g,'')" id="username" name="username"  value="" placeholder="请输入uid" maxlength="20" ><br><br>
+                <input class="card-title category-1 button-click category-button checked" type="text" oninput = "value=value.replace(/[^\d]|^[0&]+/g,'')" id="username" name="username"  value="" placeholder="请输入uid" maxlength="20" ><br><br>
                 <input class="card-title category-1 button-click category-button checked" type="text" id="getcdk" name="getcdk"  value="" placeholder="请输入CDK" maxlength="16" ><br><br>
                 <input class="card-title btn btn-success button-click category-button checked" type="submit" value="CDK兑换" name="usecdk" id="usecdk"
                        onclick="{this.disabled=true;document.getElementById('form1').submit();}">
