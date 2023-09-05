@@ -42,7 +42,7 @@ Grasscutter-CDKeySystem 是一个 [Grasscutter](https://github.com/Grasscutters/
 5. 设置 `consoleToken` 的值为你的连接秘钥，建议使用至少32字符的长随机字符串。
 6. 安装Python3和依赖包：
 ```shell
-pip install django==3.2 requests
+pip3 install django==3.2 requests
 ```
 7. 下载本仓库到服务器，打开并编辑`app`文件夹里的`CONSTANTS.py`文件。
 8. 设置服务器地址、opencommand的Token和自定义密码，保存
@@ -62,7 +62,7 @@ auth_pwd = 'jixiaob'
 ```
 9. 在项目目录运行
 ```shell
-python manage.py runserver 0.0.0.0:8000
+python3 manage.py runserver 0.0.0.0:8000
 ```
 即可在8000端口访问到页面。
 
@@ -71,7 +71,7 @@ python manage.py runserver 0.0.0.0:8000
 1. 在游戏服务器部署好YSGM（MUIP）
 2. 安装Python3和依赖包：
 ```shell
-pip install django==3.2 requests
+pip3 install django==3.2 requests
 ```
 3. 下载本仓库到服务器，打开并编辑`app`文件夹里的`CONSTANTS.py`文件。
 4. 设置YSGM的地址、服务器和自定义密码，保存
@@ -90,7 +90,7 @@ auth_pwd = 'jixiaob'
 ```
 9. 在项目目录运行
 ```shell
-python manage.py runserver 0.0.0.0:8000
+python3 manage.py runserver 0.0.0.0:8000
 ```
 即可在8000端口访问到页面。
 
