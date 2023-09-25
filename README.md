@@ -115,9 +115,15 @@ sleep后面跟延时的时间，单位是毫秒。
 如果连接的是Grasscutter，推荐使用 Grasscutter 命令生成工具:
 [GrasscutterCommandGenerator](https://github.com/jie65535/GrasscutterCommandGenerator)
 
-如果连接的是MUIP，可以参考以下两个在线命令生成工具：
-[https://cmd.d2n.moe/new/](https://cmd.d2n.moe/new/)
-[https://gm.casks.me/gm/index.html](https://gm.casks.me/gm/index.html)
+还有其他在线命令工具：
+
+[https://www.xmmt.site/](https://www.xmmt.site/)
+
+[https://cmd.amoe.cc/](https://cmd.amoe.cc/)
+
+如果连接的是MUIP，可以参考以下的在线命令生成工具：
+
+[https://gm.casks.me/](https://gm.casks.me)
 
 
 生成的个数可以填多个就可以批量生成，但是不要过多。
